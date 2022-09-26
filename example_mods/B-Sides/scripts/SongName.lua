@@ -123,8 +123,9 @@ function onCreate()
         SongDetectedIC = true
 
     elseif songName == 'Sansational' then
-        makeLuaText('JukeBoxText', 'BoneGamer555 & Asshole - ', 3000, -305-IntroTagWidth, 515)
+        makeLuaText('JukeBoxText', 'BoneGamer555 & ADA - Sansational', 3000, -305-IntroTagWidth, 515)
         setTextFont('JukeBoxText','SansICFont.ttf')
+        setProperty('JukeBoxSubText.visible', false)
         setTextAlignment('JukeBoxText', 'left')
         setObjectCamera('JukeBoxText', 'other')
         setTextSize('JukeBoxText', IntroTextSize)
@@ -289,14 +290,6 @@ function onCreate()
         setObjectCamera('JukeBoxSubText', 'other')
         setTextSize('JukeBoxSubText', IntroTextSize)
         setProperty('JukeBoxSubText.offset.x', getProperty('JukeBoxText.x') + 160)
-
-    elseif songName == 'Sansational' then
-	  makeLuaText('JukeBoxSubText', songName, 0, -305-IntroTagWidth, 515)
-        setTextAlignment('JukeBoxSubText', 'left')
-        setTextFont('JukeBoxSubText','CupheadICFont.ttf')
-        setObjectCamera('JukeBoxSubText', 'other')
-        setTextSize('JukeBoxSubText', IntroTextSize)
-        setProperty('JukeBoxSubText.offset.x', getProperty('JukeBoxText.x') - 215)
 
     elseif songName == 'last-reel' then
 	  makeLuaText('JukeBoxSubText', songName, 0, -305-IntroTagWidth, 515)

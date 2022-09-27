@@ -4,7 +4,10 @@ local RandomColor = 0;
 local characterSansDodgeFound = false
 local Bf_Sans_Dodge = false
 local InstaKillSans = false
-
+local skill = 0
+function onUpdatePost(elapsed)
+    setTextString('Skill', 'Skill Issues: ' .. skill)
+end
 
 function onCreate()
     makeAnimatedLuaSprite('DodgeAlert2','sans/Sans_Shit_NM',getProperty('boyfriend.x') - 225,getProperty('boyfriend.y') - 300)
@@ -15,6 +18,10 @@ function onCreate()
     addAnimationByPrefix('DodgeAlert2','attackBlue','Bones boi instance 1',24,false)
     addAnimationByPrefix('DodgeAlert2','attackOrange','Bones Orange instance 1',24,false)
     setBlendMode('DodgeAlert2','add')
+
+    makeLuaText('Skill', 'Skill Issues:' .. skill, 0, 0, 695)
+    setTextFont('Skill', 'SansICFont.ttf')
+    addLuaText('Skill')
     
     --scaleObject('DodgeAlert2',0.8,0.8)
 
@@ -167,9 +174,12 @@ function onTimerCompleted(tag)
             end
          
  
-            if DodgeSans == 3 and Color == 'Orange' or DodgeSans == 2 and Color == 'Blue' then
+            if DodgeSans == 3 and Color == 'Orange' or DodgeSans == 2 and Color == 'Blue' then --missed mf
                 characterPlayAnim('boyfriend','hurt',true)
                 setProperty('boyfriend.specialAnim',true);
+
+                setProperty(skill,getProperty(skill) + 1)
+
                 if (getProperty('health') - 1) > -0.01 and not InstaKillSans then
                     setProperty('health',getProperty('health') - 1)
                 elseif (getProperty('health') - 1) <= -0.05 or InstaKillSans then
@@ -197,6 +207,8 @@ function onTimerCompleted(tag)
              if DodgeSans == 3 then
                 characterPlayAnim('boyfriend','hurt',true)
                 setProperty('boyfriend.specialAnim',true);
+
+                skill = skill + 1
 
                 if characterSansDodgeFound then
                     characterPlayAnim('boyfriend','singUPmiss',true)

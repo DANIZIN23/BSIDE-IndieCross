@@ -840,7 +840,7 @@ class PlayState extends MusicBeatState
 
 		#if MODS_ALLOWED
 		foldersToCheck.insert(0, Paths.mods('scripts/'));
-		if(Paths.currentModDirectory != null && Paths.currentModDirectory.length > 0)
+		if(Paths.currentModDirectory != SUtil.getPath() + null && Paths.currentModDirectory.length > 0)
 			foldersToCheck.insert(0, Paths.mods(Paths.currentModDirectory + '/scripts/'));
 
 		for(mod in Paths.getGlobalMods())
@@ -867,12 +867,12 @@ class PlayState extends MusicBeatState
 		// STAGE SCRIPTS
 		#if (MODS_ALLOWED && LUA_ALLOWED)
 		var doPush:Bool = false;
-		var luaFile:String = 'stages/' + curStage + '.lua';
+		var luaFile:String = SUtil.getPath() + 'stages/' + curStage + '.lua';
 		if(FileSystem.exists(Paths.modFolders(luaFile))) {
 			luaFile = Paths.modFolders(luaFile);
 			doPush = true;
 		} else {
-			luaFile = Paths.getPreloadPath(luaFile);
+			luaFile = SUtil.getPath() + Paths.getPreloadPath(luaFile);
 			if(FileSystem.exists(luaFile)) {
 				doPush = true;
 			}
@@ -1055,7 +1055,7 @@ class PlayState extends MusicBeatState
 		for (notetype in noteTypeMap.keys())
 		{
 			#if MODS_ALLOWED
-			var luaToLoad:String = Paths.modFolders('custom_notetypes/' + notetype + '.lua');
+			var luaToLoad:String = SUtil.getPath() + Paths.modFolders('custom_notetypes/' + notetype + '.lua');
 			if(FileSystem.exists(luaToLoad))
 			{
 				luaArray.push(new FunkinLua(luaToLoad));
@@ -1079,7 +1079,7 @@ class PlayState extends MusicBeatState
 		for (event in eventPushedMap.keys())
 		{
 			#if MODS_ALLOWED
-			var luaToLoad:String = Paths.modFolders('custom_events/' + event + '.lua');
+			var luaToLoad:String = SUtil.getPath() + Paths.modFolders('custom_events/' + event + '.lua');
 			if(FileSystem.exists(luaToLoad))
 			{
 				luaArray.push(new FunkinLua(luaToLoad));
@@ -1093,7 +1093,7 @@ class PlayState extends MusicBeatState
 				}
 			}
 			#elseif sys
-			var luaToLoad:String = Paths.getPreloadPath('custom_events/' + event + '.lua');
+			var luaToLoad:String = SUtil.getPath() + Paths.getPreloadPath('custom_events/' + event + '.lua');
 			if(OpenFlAssets.exists(luaToLoad))
 			{
 				luaArray.push(new FunkinLua(luaToLoad));
@@ -1208,7 +1208,7 @@ class PlayState extends MusicBeatState
 		// SONG SPECIFIC SCRIPTS
 		#if LUA_ALLOWED
 		var filesPushed:Array<String> = [];
-		var foldersToCheck:Array<String> = [Paths.getPreloadPath('data/' + Paths.formatToSongPath(SONG.song) + '/')];
+		var foldersToCheck:Array<String> = SUtil.getPath() + [Paths.getPreloadPath('data/' + Paths.formatToSongPath(SONG.song) + '/')];
 
 		#if MODS_ALLOWED
 		foldersToCheck.insert(0, Paths.mods('data/' + Paths.formatToSongPath(SONG.song) + '/'));

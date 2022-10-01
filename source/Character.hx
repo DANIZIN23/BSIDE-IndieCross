@@ -126,7 +126,7 @@ class Character extends FlxSprite
 				//packer
 				//texture
 				#if MODS_ALLOWED
-				var modTxtToFind:String = Paths.modsTxt(json.image);
+				var modTxtToFind:String = SUtil.getPath() + Paths.modsTxt(json.image);
 				var txtToFind:String = Paths.getPath('images/' + json.image + '.txt', TEXT);
 				
 				//var modTextureToFind:String = Paths.modFolders("images/"+json.image);
@@ -142,7 +142,7 @@ class Character extends FlxSprite
 				
 				#if MODS_ALLOWED
 				var modAnimToFind:String = Paths.modFolders('images/' + json.image + '/Animation.json');
-				var animToFind:String = Paths.getPath('images/' + json.image + '/Animation.json', TEXT);
+				var animToFind:String = SUtil.getPath() + Paths.getPath('images/' + json.image + '/Animation.json', TEXT);
 				
 				//var modTextureToFind:String = Paths.modFolders("images/"+json.image);
 				//var textureToFind:String = Paths.getPath('images/' + json.image, new AssetType();

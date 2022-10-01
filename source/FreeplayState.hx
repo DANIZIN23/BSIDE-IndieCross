@@ -203,13 +203,17 @@ class FreeplayState extends MusicBeatState
 		text.setFormat(Paths.font("vcr.ttf"), size, FlxColor.WHITE, RIGHT);
 		text.scrollFactor.set();
 		add(text);
-		super.create();
+		#if android
+		addVirtualPad(LEFT_FULL, A_B_C);
+		#end	
+		
+			super.create();
 	}
 
 	override function closeSubState() {
 		changeSelection(0, false);
 		persistentUpdate = true;
-		super.closeSubState();
+		super.closeSubStat#if androide();
 	}
 
 	public function addSong(songName:String, weekNum:Int, songCharacter:String, color:Int)

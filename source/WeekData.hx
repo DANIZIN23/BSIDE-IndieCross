@@ -89,10 +89,10 @@ class WeekData {
 	{
 		weeksList = [];
 		weeksLoaded.clear();
-		#if windows 
+		#if MODS_ALLOWED
 		var disabledMods:Array<String> = [];
 		var modsListPath:String = 'modsList.txt';
-		var directories:Array<String> = [Paths.mods(), Paths.getPreloadPath()];
+		var directories:Array<String> = SUtil.getPath() + [Paths.mods(), Paths.getPreloadPath()];
 		var originalLength:Int = directories.length;
 		if(FileSystem.exists(modsListPath))
 		{
@@ -163,7 +163,7 @@ class WeekData {
 				var listOfWeeks:Array<String> = CoolUtil.coolTextFile(directory + 'weekList.txt');
 				for (daWeek in listOfWeeks)
 				{
-					var path:String = directory + daWeek + '.json';
+					var path:String = SUtil.getPath() + directory + daWeek + '.json';
 					if(sys.FileSystem.exists(path))
 					{
 						addWeek(daWeek, path, directories[i], i, originalLength);
